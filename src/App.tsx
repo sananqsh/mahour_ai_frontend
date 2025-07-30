@@ -22,7 +22,7 @@ import { AuthProvider, useAuth } from "./contexts";
 import { AuthModal } from "./components";
 
 const MainApp: React.FC = () => {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
   // Note: user state now comes from AuthContext, not local state
 
@@ -131,14 +131,24 @@ const MainApp: React.FC = () => {
 
   // Load initial data
   useEffect(() => {
+    if (authLoading) {return};
     if (user) {
       loadDashboard();
       loadOrders();
       loadInbox();
     }
-    // eslint-disable-next-line
-  }, [user]);
+  }, [authLoading, user]);
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen grid place-items-center bg-gray-50">
+        <div className="flex flex-col items-center">
+          <div className="w-8 h-8 mb-4 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-blue-700 font-medium text-lg">Loading...</span>
+        </div>
+      </div>
+    );
+  }
   if (!user) return <AuthModal />;
 
   return (
