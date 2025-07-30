@@ -48,8 +48,8 @@ export const api = {
   orders: () => apiService.get('/api/orders'),
   inbox: () => apiService.get('/api/inbox'),
   recommendations: () => apiService.get('/api/recommendations'),
-  chat: (message: string, conversationId?: string) =>
-    apiService.post('/api/chat', { message, conversationId }),
+  chat: (message: string, conversation_id?: string) =>
+    apiService.post('/api/chat', { message, conversation_id }),
   markAsRead: (messageId: string) =>
     apiService.put(`/api/inbox/${messageId}/read`, {})
 };

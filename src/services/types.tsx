@@ -1,8 +1,8 @@
 export interface User {
     id: string;
-    name: string;
-    tier: string;
-    points: number;
+    name?: string;
+    tier?: string;
+    points?: number;
 }
 
 export interface DashboardData {

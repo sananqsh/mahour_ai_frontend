@@ -11,7 +11,6 @@ import {
 import { api } from './services/api';
 import { useApiData } from './hooks/useApiData';
 import {
-  User,
   DashboardData,
   Order,
   Message,
@@ -19,9 +18,14 @@ import {
   ChatMessage
 } from './services/types';
 
-const App: React.FC = () => {
+import { AuthProvider, useAuth } from "./contexts";
+import { AuthModal } from "./components";
+
+const MainApp: React.FC = () => {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [user, setUser] = useState<User | null>(null);
+  // Note: user state now comes from AuthContext, not local state
+
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [orders, setOrders] = useState<Order[]>([]);
   const [inbox, setInbox] = useState<Message[]>([]);
@@ -38,7 +42,7 @@ const App: React.FC = () => {
     try {
       const data = await api.dashboard();
       setDashboardData(data);
-      if (data.user) setUser(data.user);
+      // Don't setUser here – handled by AuthContext now, unless wanting to sync user info from backend
     } catch (error) {
       setError('dashboard', error as Error);
     } finally {
@@ -127,10 +131,15 @@ const App: React.FC = () => {
 
   // Load initial data
   useEffect(() => {
-    loadDashboard();
-    loadOrders();
-    loadInbox();
-  }, []);
+    if (user) {
+      loadDashboard();
+      loadOrders();
+      loadInbox();
+    }
+    // eslint-disable-next-line
+  }, [user]);
+
+  if (!user) return <AuthModal />;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -184,5 +193,11 @@ const App: React.FC = () => {
     </div>
   );
 };
+
+const App: React.FC = () => (
+  <AuthProvider>
+    <MainApp />
+  </AuthProvider>
+);
 
 export default App;

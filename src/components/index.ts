@@ -6,3 +6,4 @@ export { Orders } from './orders/Orders';
 export { Recommendations } from './recommendations/Recommendations';
 export { Inbox } from './inbox/Inbox';
 export { Chat } from './chat/Chat';
+export { AuthModal } from './auth/AuthModal';
