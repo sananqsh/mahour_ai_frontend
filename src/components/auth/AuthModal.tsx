@@ -4,11 +4,12 @@ import { useAuth } from "../../contexts";
 type Mode = "login" | "signup";
 
 export const AuthModal: React.FC = () => {
-  const { login } = useAuth();
+  const { login, signup } = useAuth();
   const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,20 +17,18 @@ export const AuthModal: React.FC = () => {
     e.preventDefault();
     setError(null);
     setLoading(true);
-    setTimeout(() => {
-      if (mode === "signup" && (!email || !name || !password)) {
-        setError("All fields required");
-        setLoading(false);
-        return;
+    try {
+      if (mode === "login") {
+        await login(email, password);
+      } else {
+        if (!first_name || !last_name) { setError("Name required"); setLoading(false); return; }
+        await signup(first_name, last_name, email, password);
       }
-      if (!email || !password) {
-        setError("Email and password required");
-        setLoading(false);
-        return;
-      }
-      login({ id: "1", email, name: name || "User", tier: "Gold", points: 1000 });
+    } catch (err: any) {
+      setError(err?.message || "Failed");
+    } finally {
       setLoading(false);
-    }, 600);
+    }
   };
 
   return (
@@ -40,13 +39,22 @@ export const AuthModal: React.FC = () => {
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {mode === "signup" && (
-            <input
-              className="border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Full Name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              autoFocus
-            />
+            <div className="flex flex-col gap-2">
+              <input
+                className="border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="First Name"
+                value={first_name}
+                onChange={e => setFirstName(e.target.value)}
+                autoFocus
+              />
+              <input
+                className="border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="Last Name"
+                value={last_name}
+                onChange={e => setLastName(e.target.value)}
+                autoFocus
+              />
+            </div>
           )}
           <input
             className="border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
