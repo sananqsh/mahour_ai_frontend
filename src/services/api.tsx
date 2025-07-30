@@ -47,11 +47,11 @@ const apiService = {
 
 export const api = {
   dashboard: () => apiService.get('/api/v1/dashboard'),
-  orders: () => apiService.get('/api/v1/orders'),
-  inbox: () => apiService.get('/api/v1/inbox'),
-  recommendations: () => apiService.get('/api/v1/recommendations'),
+  orders: () => apiService.get('/api/v1/dashboard/orders'),
+  inbox: () => apiService.get('/api/v1/dashboard/inbox'),
+  recommendations: () => apiService.get('/api/v1/dashboard/recommendations'),
   chat: (message: string, conversation_id?: string) =>
-    apiService.post('/api/v1/chat', { message, conversation_id }),
+    apiService.post('/api/v1/dashboard/chat', { message, conversation_id }),
   markAsRead: (messageId: string) =>
-    apiService.put(`/api/v1/inbox/${messageId}/read`, {})
+    apiService.put(`/api/v1/dashboard/inbox/${messageId}/read`, {})
 };
