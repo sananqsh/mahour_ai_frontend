@@ -1,6 +1,7 @@
 import React from 'react';
-import { ShoppingBag, User } from 'lucide-react';
+import { User } from 'lucide-react';
 import { User as UserType } from '../../services/types';
+import { MahourIcon } from '../icons/MahourAI';
 
 interface HeaderProps {
   user: UserType | null;
@@ -12,10 +13,10 @@ export const Header: React.FC<HeaderProps> = ({ user }) => (
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-            <ShoppingBag className="text-white" size={24} />
+            <MahourIcon size={50} />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">Customer Club</h1>
+            <h1 className="text-xl font-bold text-gray-900">Mahour AI Customer Club</h1>
             <p className="text-sm text-gray-600">Welcome back, {user?.name || 'Loading...'}</p>
           </div>
         </div>
