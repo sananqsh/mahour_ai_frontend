@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageSquare, Send } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 import { ChatMessage } from '../../services/types';
 import { formatDateTime } from '../../utils/formatters';
@@ -40,7 +41,13 @@ export const Chat: React.FC<ChatProps> = ({
                   : 'bg-gray-100 text-gray-900'
               }`}
             >
-              <p className="text-sm">{msg.content}</p>
+              <div className={`text-sm ${
+                msg.role === 'user'
+                  ? 'prose prose-sm prose-invert max-w-none'
+                  : 'prose prose-sm max-w-none'
+              }`}>
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
+              </div>
               <p className="text-xs opacity-75 mt-1">
                 {formatDateTime(msg.timestamp)}
               </p>
