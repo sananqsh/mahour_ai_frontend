@@ -30,11 +30,11 @@ export const Chat: React.FC<ChatProps> = ({
         {chatMessages.map((msg, index) => (
           <div
             key={index}
-            className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
               className={`max-w-xs px-4 py-2 rounded-lg ${
-                msg.sender === 'user'
+                msg.role === 'user'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-900'
               }`}

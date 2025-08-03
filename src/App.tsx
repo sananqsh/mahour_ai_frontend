@@ -92,21 +92,20 @@ const MainApp: React.FC = () => {
   const handleSendMessage = async () => {
     if (!chatInput.trim()) return;
 
-    const userMessage: ChatMessage = { sender: 'user', message: chatInput, timestamp: new Date() };
+    const userMessage: ChatMessage = { role: 'user', message: chatInput, timestamp: new Date() };
     setChatMessages(prev => [...prev, userMessage]);
-
     setLoading('chat', true);
     try {
-      const response = await api.chat(chatInput);
-      const botMessage: ChatMessage = {
-        sender: 'bot',
-        message: response.reply || response.message,
+      const response = await api.chat(chatInput, chatMessages);
+      const assistantMessage: ChatMessage = {
+        role: 'assistant',
+        message: response.message,
         timestamp: new Date()
       };
-      setChatMessages(prev => [...prev, botMessage]);
+      setChatMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       const errorMessage: ChatMessage = {
-        sender: 'bot',
+        role: 'assistant',
         message: 'Sorry, I encountered an error. Please try again later.',
         timestamp: new Date()
       };

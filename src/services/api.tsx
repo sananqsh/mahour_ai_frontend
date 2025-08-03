@@ -1,4 +1,5 @@
 import { fetchWithAuth } from "../utils/jwt";
+import { ChatMessage } from "./types";
 
 const API_BASE_URL = 'http://localhost:8000';
 
@@ -50,8 +51,8 @@ export const api = {
   orders: () => apiService.get('/api/v1/dashboard/orders'),
   inbox: () => apiService.get('/api/v1/dashboard/inbox'),
   recommendations: () => apiService.get('/api/v1/dashboard/recommendations'),
-  chat: (message: string, conversation_id?: string) =>
-    apiService.post('/api/v1/dashboard/chat', { message, conversation_id }),
+  chat: (message: string, history: ChatMessage[], conversation_id?: string) =>
+    apiService.post('/api/v1/dashboard/chat', { message, history, conversation_id }),
   markAsRead: (messageId: string) =>
     apiService.put(`/api/v1/dashboard/inbox/${messageId}/read`, {})
 };
