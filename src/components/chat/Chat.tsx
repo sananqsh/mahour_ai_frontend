@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageSquare, Send } from 'lucide-react';
+
 import { ChatMessage } from '../../services/types';
 import { formatDateTime } from '../../utils/formatters';
 
@@ -39,7 +40,7 @@ export const Chat: React.FC<ChatProps> = ({
                   : 'bg-gray-100 text-gray-900'
               }`}
             >
-              <p className="text-sm">{msg.message}</p>
+              <p className="text-sm">{msg.content}</p>
               <p className="text-xs opacity-75 mt-1">
                 {formatDateTime(msg.timestamp)}
               </p>

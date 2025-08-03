@@ -47,7 +47,7 @@ export interface Product {
 
 export interface ChatMessage {
     role: 'user' | 'assistant';
-    message: string;
+    content: string;
     timestamp: Date;
 }
 
