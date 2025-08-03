@@ -4,12 +4,13 @@ import { useAuth } from "../../contexts/";
 type Mode = "login" | "signup";
 
 export const AuthModal: React.FC = () => {
-  const { login, signup, loading } = useAuth();
+  const { login, signup } = useAuth();
   const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [signupMsg, setSignupMsg] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,6 +23,8 @@ export const AuthModal: React.FC = () => {
         // Now dashboard will load automatically thanks to AuthContext
       } catch (err: any) {
         setError(err?.message || "Login failed");
+      } finally {
+        setLoading(false);
       }
     } else {
       try {

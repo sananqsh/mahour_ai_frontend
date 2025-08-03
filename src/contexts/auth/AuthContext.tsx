@@ -66,7 +66,10 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
     });
-    if (!resp.ok) throw new Error("Login failed");
+    setLoading(false)
+    if (!resp.ok) {
+      throw new Error("Login failed");
+    }
     const data = await resp.json();
     // Save tokens
     localStorage.setItem("access_token", data.access);
