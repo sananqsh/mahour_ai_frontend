@@ -3,6 +3,8 @@
 A modern React application built with TypeScript that leverages artificial intelligence to enhance customer engagement and provide personalized experiences for club members.
 (See the [backend repository](https://github.com/sananqsh/mahour_ai_backend))
 
+## Table of Contents
+
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
 - [Prerequisites](#-prerequisites)
