@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+# AI-Powered Customer Club
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React application built with TypeScript that leverages artificial intelligence to enhance customer engagement and provide personalized experiences for club members.
+(See the [backend repository](https://github.com/sananqsh/mahour_ai_backend))
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **AI-Driven Personalization**: Intelligent recommendations and content customization based on member behavior
+- **Automated Engagement**: AI-powered communication and interaction systems
+- **Personalized Rewards**: Dynamic reward systems that adapt to individual customer preferences
+- **Intelligent Support**: AI chatbot integration for instant customer assistance
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Frontend**: React 18 with TypeScript
+- **Styling**: Tailwind CSS for utility-first styling
+- **Build Tool**: Create React App
+- **Performance Monitoring**: Web Vitals integration
+- **Development**: Modern ES6+ features with strict TypeScript configuration
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📋 Prerequisites
 
-### `npm test`
+Before running this application, make sure you have the following installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (version 16 or higher)
+- npm or yarn package manager
+- Modern web browser with JavaScript enabled
 
-### `npm run build`
+## 🔧 Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/sananqsh/mahour_ai_frontend.git
+   cd mahour_ai_frontend
+   ```
+2. **Install dependencies**
+   ```
+   npm install
+   ```
+3. **Install Tailwind CSS (if not already configured)**
+   ```
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init -p
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Start the development server**
+   ```
+   npm start
+   ```
+2. **Open your browser**
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+   Navigate to http://localhost:3000 to view the application.
